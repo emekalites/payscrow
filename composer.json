@@ -2,7 +2,7 @@
 	"name": "payscrow/payment-gateway",
 	"description": "Payscrow Premium Escrow Service enables your store to easily connect with the PayScrow payment Service in Nigeria",
 	"require": {
-		"php": "~5.5.0|~5.6.0|~7.0.0",
+		"php": "~5.5.0|~5.6.0|^7.0.0",
 		"magento/module-sales": "100.0.*",
 		"magento/module-checkout": "100.0.*",
 		"magento/module-payment": "100.0.*",
@@ -10,7 +10,7 @@
 		"magento/magento-composer-installer": "100.0.*"
 	},
 	"type": "magento2-module",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"authors": [
 		{
 			"name": "Chukwuemeka Ihedoro",
