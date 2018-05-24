@@ -10,7 +10,7 @@ namespace Payscrow\PaymentGateway\Model;
 
 class PaymentGateway extends \Magento\Payment\Model\Method\AbstractMethod
 {
-    protected $_code = 'payscrowgateway';
+//    protected $_code = 'payscrowgateway';
 //    protected $_formBlockType = 'payscrowgateway/form_payscrowGateway';
 //    protected $_infoBlockType = 'payscrowgateway/info_payscrowGateway';
 //    protected $_isInitializeNeeded      = true;

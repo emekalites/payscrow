@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <payment>
-            <payscrow_paymentgateway>
+        <payscrow>
+            <paymentgateway>
                 <title>PayScrow - Premium Escrow Payment Service</title>
                 <model>Payscrow\PaymentGateway\Model\PaymentGateway</model>
                 <order_status>pending</order_status>
@@ -14,9 +14,9 @@
                 <gateway_demo_url>http://ps.ofekpc.com/</gateway_demo_url>
                 <access_key></access_key>
                 <access_demo_key>d1e5a982-fa05-414b-803c-b197307e4918</access_demo_key>
-                <sandbox_mode>0</sandbox_mode>
+                <sandbox_mode>1</sandbox_mode>
                 <max_delivery_duration></max_delivery_duration>
-            </payscrow_paymentgateway>
-        </payment>
+            </paymentgateway>
+        </payscrow>
     </default>
 </config>
