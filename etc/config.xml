@@ -5,14 +5,12 @@
 			<payscrow_paymentgateway>
 				<active>Yes</active>
 				<title>Payscrow - Premium Payment Escrow Service</title>
-				<access_key></access_key>
-				<access_demo_key>d1e5a982-fa05-414b-803c-b197307e4918</access_demo_key>
+				<access_key/>
 				<sandbox_mode>Yes</sandbox_mode>
-				<max_delivery_duration></max_delivery_duration>
-				<order_status>Pending</order_status>
+				<max_delivery_duration>30</max_delivery_duration>
+				<order_status>Complete</order_status>
 				<allowspecific>0</allowspecific>
-				<gateway_url>https://www.payscrow.net/</gateway_url>
-				<gateway_demo_url>http://ps.ofekpc.com/</gateway_demo_url>
+				<specificcountry/>
 			</payscrow_paymentgateway>
 		</payment>
 	</default>

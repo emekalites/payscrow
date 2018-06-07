@@ -2,21 +2,27 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
 	<system>
 		<section id="payment" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>Payscrow - Premium Payment Escrow Service</label>
+			<tab>payment</tab>
 			<resource>Payscrow_PaymentGateway::config_payscrow_paymentgateway</resource>
 			<group id="payscrow_paymentgateway" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
-				<label>Payscrow - Premium Payment Escrow Service</label>
+				<label>payscrow_paymentgateway</label>
 				<field id="active" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="10" translate="label" type="select">
 					<label>Enabled</label>
+					<comment/>
 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
 				</field>
 				<field id="title" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
 					<label>Title</label>
+					<comment/>
 				</field>
 				<field id="access_key" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="10" translate="label" type="text">
 					<label>Access key</label>
+					<comment/>
 				</field>
 				<field id="sandbox_mode" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="10" translate="label" type="select">
 					<label>Sandbox Mode</label>
+					<comment/>
 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
 				</field>
 				<field id="max_delivery_duration" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="10" translate="label" type="text">
@@ -25,15 +31,19 @@
 				</field>
 				<field id="order_status" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="10" translate="label" type="select">
 					<label>New order status</label>
+					<comment/>
 					<source_model>Payscrow\PaymentGateway\Model\Config\Source\OrderStatus</source_model>
 				</field>
 				<field id="allowspecific" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="10" translate="label" type="select">
-					<label>Payment from Specific countries</label>
+					<label>Payment from applicable countries</label>
+					<comment/>
 					<source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
 				</field>
-				<field id="specificcountry" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="10" translate="label" type="select">
-					<label>Payment from applicable countries</label>
+				<field id="specificcountry" showInDefault="0" showInStore="0" showInWebsite="1" sortOrder="10" translate="label" type="multiselect">
+					<label>Payment from Specific countries</label>
+					<comment/>
 					<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+					<can_be_empty>1</can_be_empty>
 				</field>
 			</group>
 		</section>
