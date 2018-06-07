@@ -1,26 +1,25 @@
 {
-	"name": "payscrow/payment-gateway",
-	"description": "Payscrow Premium Escrow Service enables your store to easily connect with the PayScrow payment Service in Nigeria",
-	"require": {
-		"php": "~5.5.0|~5.6.0|^7.0.0"
-	},
-	"type": "magento2-module",
-	"version": "1.0.4",
-	"authors": [
-		{
-			"name": "Chukwuemeka Ihedoro",
-			"email": "chukwuemeka@emnitytech.com",
-			"homepage": "http://chukwuemeka.ihedoro.com",
-			"role": "Developer"
-		}
-	],
-	"license": "GPL-3.0-or-later",
-	"autoload": {
-		"files": [
-			"registration.php"
-		],
-		"psr-4": {
-			"Payscrow\\PaymentGateway\\": ""
-		}
-	}
+    "name": "payscrow/paymentgateway",
+    "description": "Payscrow Premium Escrow Service enables your store to easily connect with the Payscrow payment Service in Nigeria",
+    "type": "magento2-module",
+    "license": "GPL-3.0-or-later",
+    "version": "1.0.5",
+    "authors": [
+        {
+            "email": "chukwuemeka@emnitytech.com",
+            "name": "Chukwuemeka Ihedoro"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "~5.5.0|~5.6.0|^7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Payscrow\\PaymentGateway\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
 }
