@@ -1,9 +1,9 @@
 {
-    "name": "payscrow/module-paymentgateway",
+    "name": "payscrow/paymentgateway",
     "description": "Payscrow Premium Escrow Service enables your store to easily connect with the Payscrow payment Service in Nigeria",
     "type": "magento2-module",
     "license": "GPL-3.0",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "authors": [
         {
             "email": "chukwuemeka@emnitytech.com",

@@ -3,14 +3,15 @@
 	<default>
 		<payment>
 			<payscrow_paymentgateway>
-				<active>Yes</active>
+				<model>Payscrow\PaymentGateway\Model\Payment</model>
 				<title>Payscrow - Premium Payment Escrow Service</title>
-				<access_key/>
-				<sandbox_mode>Yes</sandbox_mode>
-				<max_delivery_duration>30</max_delivery_duration>
 				<order_status>Complete</order_status>
+				<active>0</active>
 				<allowspecific>0</allowspecific>
-				<specificcountry/>
+				<sort_order>100</sort_order>
+				<group>offline</group>
+				<sandbox_mode>1</sandbox_mode>
+				<max_delivery_duration>30</max_delivery_duration>
 			</payscrow_paymentgateway>
 		</payment>
 	</default>
