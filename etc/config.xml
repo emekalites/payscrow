@@ -6,7 +6,6 @@
         <active>1</active>
         <model>Payscrow\PayscrowGateway\Model\Payscrow</model>
         <can_use_checkout>1</can_use_checkout> 
-        <is_sandbox>0</is_sandbox>
         <order_status>Complete</order_status>
         <title>PayScrow - Premium Escrow Payment Service</title>
         <allowspecific>0</allowspecific>
