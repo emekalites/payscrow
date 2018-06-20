@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * Created by ST Infotech pvt ltd.
+ * Author: Amit Patel
+ * Date: 20/06/2018
+ * Time: 4:40 PM
+ */
+
+
+// Retrieve order
+$orderId = $this->getOrderId();
+$order = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Sales\Model\OrderFactory')->create()->load($orderId);
+//echo $order->getId();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$escaper = $objectManager->create('Magento\Framework\Escaper');
+$heklper = $objectManager->create('Payscrow\PayscrowGateway\Helper\Data');
+$i = 0;
+$gatewayUrl = $heklper->getConfigValue('payment/payscrowgateway/gateway_url').'customer/transactions/start';
+$responseUrlData = $heklper->getConfigValue('payment/payscrowgateway/response_url');
+$sandbox = $heklper->getConfigValue('payment/payscrowgateway/is_sandbox');
+if($sandbox){
+	$gatewayUrl = 'http://ps.ofekpc.com/customer/transactions/start';
+}
+$url = $responseUrlData;
+$accessKey = $heklper->getConfigValue('payment/payscrowgateway/access_key');
+$deliveryDuration = $heklper->getConfigValue('payment/payscrowgateway/max_delivery_duration');
+$parseUrl = parse_url(trim($responseUrlData));
+$path = explode('/', $parseUrl['path'], 2);
+$domain = trim(isset($parseUrl['host']) ? $parseUrl['host'] : array_shift($path));
+
+if (!empty($domain)){
+    $url = ( isset( $_SERVER[ 'HTTPS' ] ) && $_SERVER['HTTPS'] != 'off'
+            ? "https"
+            : "http" ) . "://" . ( ( isset( $_SERVER[ 'HTTP_HOST' ] ) && isset( $_SERVER[ 'SERVER_NAME' ] ) )
+            ? ( str_ireplace( 'www.', '', $_SERVER[ 'SERVER_NAME' ] ) == str_ireplace(
+                    'www.', '', $_SERVER[ 'HTTP_HOST' ]
+                ) )
+                ? $_SERVER[ 'HTTP_HOST' ]
+                : $_SERVER[ 'SERVER_NAME' ]
+            : $_SERVER[ 'SERVER_NAME' ] ).'/' . (isset($parseUrl['host']) ? $parseUrl['path'] : $path[0]);
+    $responseUrl = $url;
+}else{
+    $url = ( isset( $_SERVER[ 'HTTPS' ] ) && $_SERVER['HTTPS'] != 'off'
+            ? "https"
+            : "http" ) . "://" . ( ( isset( $_SERVER[ 'HTTP_HOST' ] ) && isset( $_SERVER[ 'SERVER_NAME' ] ) )
+            ? ( str_ireplace( 'www.', '', $_SERVER[ 'SERVER_NAME' ] ) == str_ireplace(
+                    'www.', '', $_SERVER[ 'HTTP_HOST' ]
+                ) )
+                ? $_SERVER[ 'HTTP_HOST' ]
+                : $_SERVER[ 'SERVER_NAME' ]
+            : $_SERVER[ 'SERVER_NAME' ] ) . $url;
+    $responseUrl = $url;
+}
+?>
+
+
+<form name="payscrowform" id="payment_form_post?>" method="post" action="<?= $gatewayUrl?>">
+    <input type="hidden" name="Ref" value="<?php echo $orderId; ?>">
+    <input type="hidden" name="ResponseUrl" value="<?= $escaper->escapeHtml($responseUrl)?>">
+    <input type="hidden" name="AccessKey" value="<?= $escaper->escapeHtml($accessKey)?>" />
+    <input name="DeliveryDurationInDays" id="DeliveryDurationInDays" type="hidden" value="<?= $escaper->escapeHtml($deliveryDuration)?>" />
+
+    <?php foreach($order->getAllVisibleItems() as $itemId => $item):?>
+
+        <input type="hidden" name="Items[<?= $i ?>].Name" id="Items[<?= $i ?>]_Name"  value="<?= $escaper->escapeHtml($item->getName());?>" />
+        <input type="hidden" name="Items[<?= $i ?>].Description" id="Items[<?= $i ?>]_Description"  value="<?= $escaper->escapeHtml($item->getProduct()->getDescription());?>" />
+        <input type="hidden" name="Items[<?= $i ?>].Price" id="Items[<?= $i ?>]_Price"  value="<?= $escaper->escapeHtml(number_format($item->getPrice(),2));?>" />
+        <input type="hidden" name="Items[<?= $i ?>].Quantity" id="Items[<?= $i ?>]_Quantity"  value="<?= $escaper->escapeHtml(number_format($item->getQtyOrdered(),0));?>" />
+        <input type="hidden" name="Items[<?= $i ?>].Deliverable" id="Items[<?= $i ?>]_Deliverable"  value="<?=  $item->getIsVirtual() == 0 ? 'true': 'false';?>" />
+        <input type="hidden" name="Items[<?= $i ?>].TaxAmount" id="Items[<?= $i ?>]_TaxAmount"  value="<?=  number_format($item->getTaxAmount(),2); ?>" />
+
+    <?php $i++; endforeach;?>
+    <input type="hidden" name="ShippingAmount" value="<?php echo number_format($order->getShippingAmount(),2); ?>">
+    <input type="hidden" name="GrandTotal" value="<?php echo number_format($order->getBaseGrandTotal(),2); ?>">
+</form>
+<script type="text/javascript">
+require(["jquery", "prototype"], function(jQuery) {
+
+    document.payscrowform.submit();
+
+});
+</script>

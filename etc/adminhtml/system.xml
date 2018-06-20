@@ -1,39 +1,49 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
-	<system>
-		<section id="payment">
-			<group id="payscrow_paymentgateway" translate="label" type="text" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1">
-				<label>Payscrow - Premium Payment Escrow Service</label>
-				<field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
-					<label>Enabled</label>
-					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-				</field>
-				<field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-					<label>Title</label>
-				</field>
-				<field id="order_status" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
-					<label>New Order Status</label>
-					<source_model>Payscrow\PaymentGateway\Model\Config\Source\OrderStatus</source_model>
-				</field>
-				<field id="allowspecific" translate="label" type="allowspecific" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
-					<label>Payment from Applicable Countries</label>
-					<source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
-				</field>
-				<field id="specificcountry" translate="label" type="multiselect" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
-					<label>Payment from Specific Countries</label>
-					<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
-				</field>
-				<field id="sandbox_mode" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
-					<label>Sandbox mode</label>
-					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-				</field>
-				<field id="max_delivery_duration" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
-					<label>Maximum delivery duration</label>
-				</field>
-				<field id="sort_order" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="0">
-					<label>Sort Order</label>
-				</field>
-			</group>
-		</section>
-	</system>
+    <system>
+        <section id="payment">
+            <resource>Payscrow_PayscrowGateway::system_config</resource>
+            <group id="payscrowgateway" translate="label" sortOrder="0" showInDefault="1" showInWebsite="1">
+                <label>Payscrow - Premium Escrow Payment Service</label>
+                <field id="active" translate="label" sortOrder="1" type="select" showInDefault="1" showInWebsite="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" sortOrder="2" type="text" showInDefault="1" showInWebsite="1">
+                    <label>Title</label>
+                </field>
+                <field id="access_key" translate="label" sortOrder="3" type="text" showInDefault="1" showInWebsite="1">
+                    <label>Access key</label>
+                </field>
+                <field id="is_sandbox" translate="label" sortOrder="1" type="select" showInDefault="1" showInWebsite="1">
+                    <label>Sandbox Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="gateway_url" translate="label" sortOrder="5" type="text" showInDefault="1" showInWebsite="1">
+                    <label>Payscrow Gateway Url</label>
+                </field>
+                <field id="response_url" translate="label" sortOrder="6" type="text" showInDefault="1" showInWebsite="1">
+                    <label>Response Url/Path - e.g "http://example.com/path-to-response" or "/path-to-response"</label>
+                </field>
+                <field id="order_status" translate="label" sortOrder="4" type="select" showInDefault="1" showInWebsite="1">
+                    <label>New order status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status\NewStatus</source_model>
+                </field>
+                <field id="allowspecific" translate="label" sortOrder="8" type="allowspecific" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment from applicable countries</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" sortOrder="9" type="multiselect" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment from Specific countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                </field>
+                <field id="instructions" translate="label" sortOrder="50" showInDefault="9" showInWebsite="1" showInStore="1">
+                    <label>Instructions</label>
+                </field>
+                <field id="max_delivery_duration" translate="label" sortOrder="7" type="text" showInDefault="1" showInWebsite="1">
+                    <label>Max. Delivery Duration</label>
+                </field>
+            </group>
+        </section>
+    </system>
 </config>
