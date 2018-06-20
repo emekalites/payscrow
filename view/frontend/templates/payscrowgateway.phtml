@@ -23,7 +23,7 @@ if($sandbox){
 	$gatewayUrl = 'http://ps.ofekpc.com/customer/transactions/start';
 }
 $url = $responseUrlData;
-$accessKey = $heklper->getConfigValue('payment/payscrowgateway/access_key');
+$accessKey = ($sandbox) ? $heklper->getConfigValue('payment/payscrowgateway/access_demo_key') : $heklper->getConfigValue('payment/payscrowgateway/access_key');
 $deliveryDuration = $heklper->getConfigValue('payment/payscrowgateway/max_delivery_duration');
 $parseUrl = parse_url(trim($responseUrlData));
 $path = explode('/', $parseUrl['path'], 2);
@@ -64,7 +64,7 @@ if (!empty($domain)){
     <?php foreach($order->getAllVisibleItems() as $itemId => $item):?>
 
         <input type="hidden" name="Items[<?= $i ?>].Name" id="Items[<?= $i ?>]_Name"  value="<?= $escaper->escapeHtml($item->getName());?>" />
-        <input type="hidden" name="Items[<?= $i ?>].Description" id="Items[<?= $i ?>]_Description"  value="<?= $escaper->escapeHtml($item->getProduct()->getDescription());?>" />
+        <input type="hidden" name="Items[<?= $i ?>].Description" id="Items[<?= $i ?>]_Description"  value="<?= $escaper->escapeHtml(strip_tags($item->getProduct()->getDescription()));?>" />
         <input type="hidden" name="Items[<?= $i ?>].Price" id="Items[<?= $i ?>]_Price"  value="<?= $escaper->escapeHtml(number_format($item->getPrice(),2));?>" />
         <input type="hidden" name="Items[<?= $i ?>].Quantity" id="Items[<?= $i ?>]_Quantity"  value="<?= $escaper->escapeHtml(number_format($item->getQtyOrdered(),0));?>" />
         <input type="hidden" name="Items[<?= $i ?>].Deliverable" id="Items[<?= $i ?>]_Deliverable"  value="<?=  $item->getIsVirtual() == 0 ? 'true': 'false';?>" />

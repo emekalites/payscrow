@@ -21,7 +21,9 @@ $gatewayData = $xml->xpath( 'default/payment/payscrowgateway/gateway_url');
 $gatewayUrl = $gatewayData[0].'customer/transactions/start';
 $responseUrlData = $xml->xpath( 'default/payment/payscrowgateway/response_url');
 $url = $responseUrlData[0];
-$accessKeyData = $xml->xpath( 'default/payment/payscrowgateway/access_key');
+$sandboxData = $xml->xpath( 'default/payment/payscrowgateway/is_sandbox');
+$sandbox = $sandboxData[0];
+$accessKeyData = ($sandbox) ? $xml->xpath( 'default/payment/payscrowgateway/access_demo_key') : $xml->xpath( 'default/payment/payscrowgateway/access_key');
 $accessKey = $accessKeyData[0];
 $deliveryDurationData = $xml->xpath( 'default/payment/payscrowgateway/max_delivery_duration');
 $deliveryDuration = $deliveryDurationData[0];
@@ -65,7 +67,7 @@ echo $gatewayUrl;die;
     <?php foreach($order->getAllVisibleItems() as $itemId => $item):?>
 
         <input type="hidden" name="Items[<?= $i ?>].Name" id="Items[<?= $i ?>]_Name"  value="<?= $this->htmlEscape($item->getName());?>" />
-        <input type="hidden" name="Items[<?= $i ?>].Description" id="Items[<?= $i ?>]_Description"  value="<?= $this->htmlEscape($item->getProduct()->getDescription());?>" />
+        <input type="hidden" name="Items[<?= $i ?>].Description" id="Items[<?= $i ?>]_Description"  value="<?= $this->htmlEscape(strip_tags($item->getProduct()->getDescription()));?>" />
         <input type="hidden" name="Items[<?= $i ?>].Price" id="Items[<?= $i ?>]_Price"  value="<?= $this->htmlEscape(number_format($item->getPrice(),2));?>" />
         <input type="hidden" name="Items[<?= $i ?>].Quantity" id="Items[<?= $i ?>]_Quantity"  value="<?= $this->htmlEscape(number_format($item->getQtyOrdered(),0));?>" />
         <input type="hidden" name="Items[<?= $i ?>].Deliverable" id="Items[<?= $i ?>]_Deliverable"  value="<?=  $item->getIsVirtual() == 0 ? 'true': 'false';?>" />

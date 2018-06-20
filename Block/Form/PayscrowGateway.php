@@ -17,10 +17,7 @@ class PayscrowGateway extends Form
     protected function _construct()
     {
         $this->setMethodLabelAfterHtml($this->getLabel());
-        parent::_construct();
-
-        return;
-
+        return parent::_construct();
     }
 
     private function getLabel()

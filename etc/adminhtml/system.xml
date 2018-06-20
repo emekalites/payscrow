@@ -27,7 +27,7 @@
                 </field>
                 <field id="order_status" translate="label" sortOrder="4" type="select" showInDefault="1" showInWebsite="1">
                     <label>New order status</label>
-                    <source_model>Magento\Sales\Model\Config\Source\Order\Status\NewStatus</source_model>
+                    <source_model>Payscrow\PayscrowGateway\Model\Config\Source\OrderStatus</source_model>
                 </field>
                 <field id="allowspecific" translate="label" sortOrder="8" type="allowspecific" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Payment from applicable countries</label>
