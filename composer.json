@@ -1,5 +1,5 @@
 {
-    "name": "Payscrow\/PayscrowGateway",
+    "name": "payscrow/payscrow-gateway",
     "description": "Payscrow Premium Escrow Service enables your store to easily connect with the Payscrow payment Service in Nigeria",
     "type": "magento2-module",
     "license": "GPL-3.0",
